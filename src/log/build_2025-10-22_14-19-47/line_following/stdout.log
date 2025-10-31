@@ -1,0 +1,7 @@
+running egg_info
+writing ../build/line_following/line_following.egg-info/PKG-INFO
+writing dependency_links to ../build/line_following/line_following.egg-info/dependency_links.txt
+writing entry points to ../build/line_following/line_following.egg-info/entry_points.txt
+writing requirements to ../build/line_following/line_following.egg-info/requires.txt
+writing top-level names to ../build/line_following/line_following.egg-info/top_level.txt
+reading manifest file '../build/line_following/line_following.egg-info/SOURCES.txt'

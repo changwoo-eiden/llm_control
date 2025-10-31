@@ -1,0 +1,38 @@
+[1.329s] Invoking command in '/home/changwoo/ros2_ws/src/dwa_local_planner': PYTHONPATH=/home/changwoo/ros2_ws/src/build/dwa_local_planner/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/changwoo/ros2_ws/src/install/dwa_local_planner/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/dwa_local_planner build --build-base /home/changwoo/ros2_ws/src/build/dwa_local_planner/build install --record /home/changwoo/ros2_ws/src/build/dwa_local_planner/install.log --single-version-externally-managed
+[1.563s] running egg_info
+[1.577s] writing ../build/dwa_local_planner/dwa_local_planner.egg-info/PKG-INFO
+[1.578s] writing dependency_links to ../build/dwa_local_planner/dwa_local_planner.egg-info/dependency_links.txt
+[1.578s] writing entry points to ../build/dwa_local_planner/dwa_local_planner.egg-info/entry_points.txt
+[1.578s] writing requirements to ../build/dwa_local_planner/dwa_local_planner.egg-info/requires.txt
+[1.578s] writing top-level names to ../build/dwa_local_planner/dwa_local_planner.egg-info/top_level.txt
+[1.609s] reading manifest file '../build/dwa_local_planner/dwa_local_planner.egg-info/SOURCES.txt'
+[1.609s] Traceback (most recent call last):
+[1.609s]   File "/home/changwoo/ros2_ws/src/dwa_local_planner/setup.py", line 5, in <module>
+[1.609s]     setup(
+[1.609s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/__init__.py", line 117, in setup
+[1.609s]     return distutils.core.setup(**attrs)
+[1.610s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 186, in setup
+[1.610s]     return run_commands(dist)
+[1.610s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 202, in run_commands
+[1.610s]     dist.run_commands()
+[1.610s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1002, in run_commands
+[1.610s]     self.run_command(cmd)
+[1.610s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/dist.py", line 1104, in run_command
+[1.610s]     super().run_command(command)
+[1.610s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1021, in run_command
+[1.610s]     cmd_obj.run()
+[1.610s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 312, in run
+[1.610s]     self.find_sources()
+[1.610s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 320, in find_sources
+[1.610s]     mm.run()
+[1.610s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 548, in run
+[1.610s]     self.prune_file_list()
+[1.610s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/sdist.py", line 162, in prune_file_list
+[1.610s]     super().prune_file_list()
+[1.611s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/command/sdist.py", line 386, in prune_file_list
+[1.611s]     base_dir = self.distribution.get_fullname()
+[1.611s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_core_metadata.py", line 275, in get_fullname
+[1.611s]     return _distribution_fullname(self.get_name(), self.get_version())
+[1.611s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_core_metadata.py", line 293, in _distribution_fullname
+[1.611s]     canonicalize_version(version, strip_trailing_zero=False),
+[1.611s] TypeError: canonicalize_version() got an unexpected keyword argument 'strip_trailing_zero'

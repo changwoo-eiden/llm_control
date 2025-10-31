@@ -1,0 +1,4 @@
+source;share/park_worlds/local_setup.bash
+source;share/park_worlds/local_setup.dsv
+source;share/park_worlds/local_setup.sh
+source;share/park_worlds/local_setup.zsh

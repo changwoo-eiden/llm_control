@@ -1,0 +1,2 @@
+[console_scripts]
+path_follower = bcr_bot_controller.path_follower:main

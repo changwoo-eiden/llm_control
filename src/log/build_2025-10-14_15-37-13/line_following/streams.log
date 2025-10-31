@@ -1,0 +1,26 @@
+[1.069s] Invoking command in '/home/changwoo/ros2_ws/src/line_following': PYTHONPATH=/home/changwoo/ros2_ws/src/build/line_following/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/changwoo/ros2_ws/src/install/line_following/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/line_following build --build-base /home/changwoo/ros2_ws/src/build/line_following/build install --record /home/changwoo/ros2_ws/src/build/line_following/install.log --single-version-externally-managed install_data
+[1.290s] running egg_info
+[1.304s] writing ../build/line_following/line_following.egg-info/PKG-INFO
+[1.305s] writing dependency_links to ../build/line_following/line_following.egg-info/dependency_links.txt
+[1.305s] writing entry points to ../build/line_following/line_following.egg-info/entry_points.txt
+[1.305s] writing requirements to ../build/line_following/line_following.egg-info/requires.txt
+[1.305s] writing top-level names to ../build/line_following/line_following.egg-info/top_level.txt
+[1.335s] reading manifest file '../build/line_following/line_following.egg-info/SOURCES.txt'
+[1.336s] writing manifest file '../build/line_following/line_following.egg-info/SOURCES.txt'
+[1.336s] running build
+[1.336s] running build_py
+[1.336s] copying line_following/follow_line.py -> /home/changwoo/ros2_ws/src/build/line_following/build/lib/line_following
+[1.336s] copying line_following/__init__.py -> /home/changwoo/ros2_ws/src/build/line_following/build/lib/line_following
+[1.337s] running install
+[1.341s] running install_lib
+[1.356s] running install_data
+[1.356s] copying resource/line_following -> /home/changwoo/ros2_ws/src/install/line_following/share/ament_index/resource_index/packages
+[1.357s] copying package.xml -> /home/changwoo/ros2_ws/src/install/line_following/share/line_following
+[1.357s] copying launch/follow_line.launch.py -> /home/changwoo/ros2_ws/src/install/line_following/share/line_following/launch
+[1.357s] running install_egg_info
+[1.373s] removing '/home/changwoo/ros2_ws/src/install/line_following/lib/python3.10/site-packages/line_following-0.0.0-py3.10.egg-info' (and everything under it)
+[1.373s] Copying ../build/line_following/line_following.egg-info to /home/changwoo/ros2_ws/src/install/line_following/lib/python3.10/site-packages/line_following-0.0.0-py3.10.egg-info
+[1.374s] running install_scripts
+[1.501s] Installing follow_line script to /home/changwoo/ros2_ws/src/install/line_following/lib/line_following
+[1.501s] writing list of installed files to '/home/changwoo/ros2_ws/src/build/line_following/install.log'
+[1.529s] Invoked command in '/home/changwoo/ros2_ws/src/line_following' returned '0': PYTHONPATH=/home/changwoo/ros2_ws/src/build/line_following/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/changwoo/ros2_ws/src/install/line_following/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/line_following build --build-base /home/changwoo/ros2_ws/src/build/line_following/build install --record /home/changwoo/ros2_ws/src/build/line_following/install.log --single-version-externally-managed install_data

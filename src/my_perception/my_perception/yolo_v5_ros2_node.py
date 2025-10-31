@@ -1,0 +1,193 @@
+#!/usr/bin/env python3
+import os
+import json
+import time
+
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from std_msgs.msg import String
+from cv_bridge import CvBridge
+import cv2
+import torch
+from rclpy.qos import qos_profile_sensor_data
+
+# ───────────────────────────────────────────────
+# ✅ vision_msgs import만 유지 (geometry_msgs는 제거)
+# ───────────────────────────────────────────────
+try:
+    from vision_msgs.msg import (
+    Detection2DArray,
+    Detection2D,
+    ObjectHypothesisWithPose,
+    ObjectHypothesis,
+    BoundingBox2D,
+    Pose2D,   # 반드시 vision_msgs 버전!
+)
+
+    VISION_AVAILABLE = True
+except ImportError:
+    VISION_AVAILABLE = False
+
+
+# ===================================================================
+class YoloV5ROS2Node(Node):
+    def __init__(self):
+        super().__init__("yolo_v5_ros2_node")
+
+        # -------- ROS Parameters --------
+        self.declare_parameter("image_topic", "/bcr_bot/kinect_camera/image_raw")
+        self.declare_parameter("model_path", "/home/changwoo/yolov5/yolov5s.pt")
+        self.declare_parameter("conf_thres", 0.4)
+        self.declare_parameter("device", "cuda")
+        self.declare_parameter("publish_vision_msgs", True)
+        self.declare_parameter("class_filter", [])
+        self.declare_parameter("img_size", 640)
+
+        self.image_topic = self.get_parameter("image_topic").value
+        self.model_path = os.path.expanduser(self.get_parameter("model_path").value)
+        self.conf_thres = float(self.get_parameter("conf_thres").value)
+        self.device = self.get_parameter("device").value
+        self.publish_vision_msgs = bool(self.get_parameter("publish_vision_msgs").value)
+        self.class_filter = list(self.get_parameter("class_filter").value)
+        self.img_size = int(self.get_parameter("img_size").value)
+
+        # -------- Load YOLOv5 Model --------
+        repo = os.path.expanduser("~/yolov5")
+        self.get_logger().info(f"📦 Loading YOLOv5 model from {self.model_path}...")
+        self.model = torch.hub.load(repo, "custom", path=self.model_path, source="local")
+        self.model.conf = self.conf_thres
+
+        if "cuda" in self.device and torch.cuda.is_available():
+            self.model.to(self.device)
+            try:
+                self.model.half()
+            except Exception:
+                pass
+            self.get_logger().info("🧠 Using CUDA (FP16).")
+        else:
+            self.device = "cpu"
+            self.model.to("cpu")
+            self.get_logger().info("🧠 Using CPU inference.")
+
+        self.class_names = self.model.names
+        self.get_logger().info("✅ Model loaded successfully.")
+
+        # -------- ROS I/O --------
+        self.bridge = CvBridge()
+        self.sub = self.create_subscription(Image, self.image_topic, self.image_callback, qos_profile_sensor_data)
+        self.pub_json = self.create_publisher(String, "/detections", 10)
+
+        self.pub_vision = None
+        if VISION_AVAILABLE and self.publish_vision_msgs:
+            self.pub_vision = self.create_publisher(Detection2DArray, "/detections_vision", 10)
+        elif not VISION_AVAILABLE:
+            self.get_logger().warn("⚠️ vision_msgs not available; skipping vision_msgs output.")
+
+        self.last_log_time = 0
+        self.get_logger().info(f"🟢 YOLOv5 node started. Subscribing to {self.image_topic}")
+
+    # ===================================================================
+    def image_callback(self, msg: Image):
+        cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
+        t0 = time.time()
+
+        results = self.model(cv_image, size=self.img_size)
+        detections = results.xyxy[0].cpu().numpy()
+
+        json_list = []
+        vis_msg = Detection2DArray()
+        if self.pub_vision:
+            vis_msg.header = msg.header
+
+        h, w = cv_image.shape[:2]
+
+        for *xyxy, conf, cls in detections:
+            x1, y1, x2, y2 = map(float, xyxy)
+            conf = float(conf)
+            cls = int(cls)
+
+            if isinstance(self.class_names, (list, tuple)):
+                cls_name = self.class_names[cls]
+            else:
+                cls_name = self.class_names.get(cls, str(cls))
+
+            if self.class_filter and cls_name not in self.class_filter:
+                continue
+
+            cx, cy = (x1 + x2) / 2, (y1 + y2) / 2
+            bw, bh = x2 - x1, y2 - y1
+
+            # JSON
+            json_list.append({
+                "class": cls_name,
+                "score": round(conf, 3),
+                "bbox": {"center_x": cx, "center_y": cy, "width": bw, "height": bh},
+                "image_size": {"width": w, "height": h}
+            })
+
+            # vision_msgs
+            if self.pub_vision:
+                det = Detection2D()
+                det.header = msg.header
+
+                # ✅ vision_msgs Pose2D 사용
+                p2 = Pose2D()
+                p2.position.x = float(cx)
+                p2.position.y = float(cy)
+                p2.theta = 0.0
+
+                det.bbox = BoundingBox2D()
+                det.bbox.center = p2
+                det.bbox.size_x = float(bw)
+                det.bbox.size_y = float(bh)
+
+
+                hyp = ObjectHypothesisWithPose()
+                hyp.hypothesis = ObjectHypothesis(
+                    class_id=str(cls_name),
+                    score=float(conf)
+                )
+
+                det.results.append(hyp)
+                vis_msg.detections.append(det)
+
+            # ── 시각화 ──
+            cv2.rectangle(cv_image, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
+            label = f"{cls_name} {conf:.2f}"
+            cv2.putText(cv_image, label, (int(x1), int(y1) - 5),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+
+        # Publish JSON
+        msg_out = String()
+        msg_out.data = json.dumps(json_list, ensure_ascii=False)
+        self.pub_json.publish(msg_out)
+
+        # Publish vision_msgs
+        if self.pub_vision:
+            self.pub_vision.publish(vis_msg)
+
+        # FPS log
+        fps = 1.0 / (time.time() - t0 + 1e-6)
+        now = self.get_clock().now().nanoseconds
+        if now - self.last_log_time > 2 * 1e9:
+            self.get_logger().info(f"📸 Detections: {len(json_list)} | {fps:.1f} FPS")
+            self.last_log_time = now
+
+
+# ===================================================================
+def main():
+    rclpy.init()
+    node = YoloV5ROS2Node()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()

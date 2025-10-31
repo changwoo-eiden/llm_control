@@ -1,0 +1,7 @@
+running egg_info
+writing ../build/bcr_bot_controller/bcr_bot_controller.egg-info/PKG-INFO
+writing dependency_links to ../build/bcr_bot_controller/bcr_bot_controller.egg-info/dependency_links.txt
+writing entry points to ../build/bcr_bot_controller/bcr_bot_controller.egg-info/entry_points.txt
+writing requirements to ../build/bcr_bot_controller/bcr_bot_controller.egg-info/requires.txt
+writing top-level names to ../build/bcr_bot_controller/bcr_bot_controller.egg-info/top_level.txt
+reading manifest file '../build/bcr_bot_controller/bcr_bot_controller.egg-info/SOURCES.txt'

@@ -1,0 +1,12 @@
+{
+  "regions": [
+    {
+      "id": 101,
+      "name": "책상",
+      "type": "obstacle",
+      "position": [-1.671, -7.728],
+      "size": [1.15, 1.55],
+      "orientation": 0.0
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Relay to the Python module entrypoint (same as console_scripts)
+exec python3 -m my_perception.yolo_v5_ros2_node "$@"

@@ -1,0 +1,9 @@
+yolo_v5_ros2_node:
+  ros__parameters:
+    image_topic: /bcr_bot/kinect_camera/image_raw
+    model_path: /home/changwoo/yolov5/runs/train/test5/weights/best.pt
+    device: cuda
+    conf_thres: 0.35
+    img_size: 640
+    publish_vision_msgs: true
+    class_filter: []

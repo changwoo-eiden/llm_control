@@ -1,0 +1,41 @@
+[0.556s] Invoking command in '/home/changwoo/ros2_ws/src/simple_astar_planner': PYTHONPATH=/home/changwoo/ros2_ws/src/simple_astar_planner/build/simple_astar_planner/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/changwoo/ros2_ws/src/simple_astar_planner/install/simple_astar_planner/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/simple_astar_planner build --build-base /home/changwoo/ros2_ws/src/simple_astar_planner/build/simple_astar_planner/build install --record /home/changwoo/ros2_ws/src/simple_astar_planner/build/simple_astar_planner/install.log --single-version-externally-managed install_data
+[0.788s] running egg_info
+[0.802s] creating build/simple_astar_planner/simple_astar_planner.egg-info
+[0.802s] writing build/simple_astar_planner/simple_astar_planner.egg-info/PKG-INFO
+[0.803s] writing dependency_links to build/simple_astar_planner/simple_astar_planner.egg-info/dependency_links.txt
+[0.803s] writing entry points to build/simple_astar_planner/simple_astar_planner.egg-info/entry_points.txt
+[0.803s] writing requirements to build/simple_astar_planner/simple_astar_planner.egg-info/requires.txt
+[0.803s] writing top-level names to build/simple_astar_planner/simple_astar_planner.egg-info/top_level.txt
+[0.803s] writing manifest file 'build/simple_astar_planner/simple_astar_planner.egg-info/SOURCES.txt'
+[0.833s] reading manifest file 'build/simple_astar_planner/simple_astar_planner.egg-info/SOURCES.txt'
+[0.834s] Traceback (most recent call last):
+[0.834s]   File "/home/changwoo/ros2_ws/src/simple_astar_planner/setup.py", line 3, in <module>
+[0.834s]     setup()
+[0.834s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/__init__.py", line 117, in setup
+[0.836s]     return distutils.core.setup(**attrs)
+[0.836s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 186, in setup
+[0.836s]     return run_commands(dist)
+[0.836s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 202, in run_commands
+[0.836s]     dist.run_commands()
+[0.836s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1002, in run_commands
+[0.836s]     self.run_command(cmd)
+[0.836s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/dist.py", line 1104, in run_command
+[0.837s]     super().run_command(command)
+[0.837s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1021, in run_command
+[0.837s]     cmd_obj.run()
+[0.837s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 312, in run
+[0.837s]     self.find_sources()
+[0.837s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 320, in find_sources
+[0.837s]     mm.run()
+[0.837s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 548, in run
+[0.837s]     self.prune_file_list()
+[0.837s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/sdist.py", line 162, in prune_file_list
+[0.838s]     super().prune_file_list()
+[0.838s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/command/sdist.py", line 386, in prune_file_list
+[0.838s]     base_dir = self.distribution.get_fullname()
+[0.838s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_core_metadata.py", line 275, in get_fullname
+[0.838s]     return _distribution_fullname(self.get_name(), self.get_version())
+[0.838s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_core_metadata.py", line 293, in _distribution_fullname
+[0.838s]     canonicalize_version(version, strip_trailing_zero=False),
+[0.838s] TypeError: canonicalize_version() got an unexpected keyword argument 'strip_trailing_zero'
+[0.858s] Invoked command in '/home/changwoo/ros2_ws/src/simple_astar_planner' returned '1': PYTHONPATH=/home/changwoo/ros2_ws/src/simple_astar_planner/build/simple_astar_planner/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/changwoo/ros2_ws/src/simple_astar_planner/install/simple_astar_planner/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/simple_astar_planner build --build-base /home/changwoo/ros2_ws/src/simple_astar_planner/build/simple_astar_planner/build install --record /home/changwoo/ros2_ws/src/simple_astar_planner/build/simple_astar_planner/install.log --single-version-externally-managed install_data

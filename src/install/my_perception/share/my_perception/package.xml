@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>my_perception</name>
+  <version>0.1.0</version>
+  <description>YOLOv5 ROS2 node that subscribes to an image topic and publishes detections as JSON</description>
+
+  <maintainer email="changwoo@example.com">changwoo</maintainer>
+  <license>MIT</license>
+
+  <!-- 빌드 시스템: 파이썬 패키지 -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- 런타임에서 필요한 ROS 인터페이스들 -->
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>cv_bridge</depend>
+
+  <!-- (선택) vision_msgs를 쓰지 않지만, 확장 시 유용 -->
+  <!-- <depend>vision_msgs</depend> -->
+
+  <!-- 테스트/품질 (선택) -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

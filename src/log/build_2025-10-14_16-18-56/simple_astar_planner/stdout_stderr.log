@@ -1,0 +1,46 @@
+running egg_info
+writing ../build/simple_astar_planner/simple_astar_planner.egg-info/PKG-INFO
+writing dependency_links to ../build/simple_astar_planner/simple_astar_planner.egg-info/dependency_links.txt
+writing entry points to ../build/simple_astar_planner/simple_astar_planner.egg-info/entry_points.txt
+writing requirements to ../build/simple_astar_planner/simple_astar_planner.egg-info/requires.txt
+writing top-level names to ../build/simple_astar_planner/simple_astar_planner.egg-info/top_level.txt
+reading manifest file '../build/simple_astar_planner/simple_astar_planner.egg-info/SOURCES.txt'
+writing manifest file '../build/simple_astar_planner/simple_astar_planner.egg-info/SOURCES.txt'
+running build
+running build_py
+copying src/simple_astar_planner/auto_start_publisher.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/sequences.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/obstacle_publisher.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/__init__.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/navigator.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/takephoto.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/gpt_api_controller.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/planner.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/auto_start_publisher.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/sequences.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/obstacle_publisher.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/__init__.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/navigator.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/takephoto.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/gpt_api_controller.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+copying src/simple_astar_planner/planner.py -> /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner
+running install
+running install_lib
+copying /home/changwoo/ros2_ws/src/build/simple_astar_planner/build/lib/simple_astar_planner/gpt_api_controller.py -> /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/python3.10/site-packages/simple_astar_planner
+byte-compiling /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/python3.10/site-packages/simple_astar_planner/gpt_api_controller.py to gpt_api_controller.cpython-310.pyc
+running install_data
+copying resource/simple_astar_planner -> /home/changwoo/ros2_ws/src/install/simple_astar_planner/share/ament_index/resource_index/packages
+copying package.xml -> /home/changwoo/ros2_ws/src/install/simple_astar_planner/share/simple_astar_planner
+copying launch/astar_with_map.launch.py -> /home/changwoo/ros2_ws/src/install/simple_astar_planner/share/simple_astar_planner/launch
+running install_egg_info
+removing '/home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/python3.10/site-packages/simple_astar_planner-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../build/simple_astar_planner/simple_astar_planner.egg-info to /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/python3.10/site-packages/simple_astar_planner-0.0.0-py3.10.egg-info
+running install_scripts
+Installing auto_start_publisher script to /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/simple_astar_planner
+Installing gpt_api_controller script to /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/simple_astar_planner
+Installing navigator script to /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/simple_astar_planner
+Installing obstacle_publisher script to /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/simple_astar_planner
+Installing planner script to /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/simple_astar_planner
+Installing sequences script to /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/simple_astar_planner
+Installing takephoto script to /home/changwoo/ros2_ws/src/install/simple_astar_planner/lib/simple_astar_planner
+writing list of installed files to '/home/changwoo/ros2_ws/src/build/simple_astar_planner/install.log'

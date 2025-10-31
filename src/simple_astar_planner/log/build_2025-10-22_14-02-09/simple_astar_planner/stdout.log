@@ -1,0 +1,9 @@
+running egg_info
+creating build/simple_astar_planner/simple_astar_planner.egg-info
+writing build/simple_astar_planner/simple_astar_planner.egg-info/PKG-INFO
+writing dependency_links to build/simple_astar_planner/simple_astar_planner.egg-info/dependency_links.txt
+writing entry points to build/simple_astar_planner/simple_astar_planner.egg-info/entry_points.txt
+writing requirements to build/simple_astar_planner/simple_astar_planner.egg-info/requires.txt
+writing top-level names to build/simple_astar_planner/simple_astar_planner.egg-info/top_level.txt
+writing manifest file 'build/simple_astar_planner/simple_astar_planner.egg-info/SOURCES.txt'
+reading manifest file 'build/simple_astar_planner/simple_astar_planner.egg-info/SOURCES.txt'

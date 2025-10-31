@@ -1,0 +1,43 @@
+[0.543s] Invoking command in '/home/changwoo/ros2_ws/src/build/park_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/changwoo/ros2_ws/install/simple_astar_planner:/home/changwoo/ros2_ws/install/line_following:/home/changwoo/ros2_ws/install/dwa_local_planner:/home/changwoo/ros2_ws/install/bcr_bot_controller:/opt/ros/humble /usr/bin/cmake /home/changwoo/ros2_ws/src/park_worlds -DCMAKE_INSTALL_PREFIX=/home/changwoo/ros2_ws/src/install/park_worlds
+[0.583s] -- The C compiler identification is GNU 11.4.0
+[0.625s] -- The CXX compiler identification is GNU 11.4.0
+[0.631s] -- Detecting C compiler ABI info
+[0.681s] -- Detecting C compiler ABI info - done
+[0.690s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.690s] -- Detecting C compile features
+[0.690s] -- Detecting C compile features - done
+[0.693s] -- Detecting CXX compiler ABI info
+[0.758s] -- Detecting CXX compiler ABI info - done
+[0.764s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.764s] -- Detecting CXX compile features
+[0.764s] -- Detecting CXX compile features - done
+[0.766s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.067s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.218s] -- Configuring done
+[1.220s] -- Generating done
+[1.221s] -- Build files have been written to: /home/changwoo/ros2_ws/src/build/park_worlds
+[1.224s] Invoked command in '/home/changwoo/ros2_ws/src/build/park_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/changwoo/ros2_ws/install/simple_astar_planner:/home/changwoo/ros2_ws/install/line_following:/home/changwoo/ros2_ws/install/dwa_local_planner:/home/changwoo/ros2_ws/install/bcr_bot_controller:/opt/ros/humble /usr/bin/cmake /home/changwoo/ros2_ws/src/park_worlds -DCMAKE_INSTALL_PREFIX=/home/changwoo/ros2_ws/src/install/park_worlds
+[1.225s] Invoking command in '/home/changwoo/ros2_ws/src/build/park_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/changwoo/ros2_ws/install/simple_astar_planner:/home/changwoo/ros2_ws/install/line_following:/home/changwoo/ros2_ws/install/dwa_local_planner:/home/changwoo/ros2_ws/install/bcr_bot_controller:/opt/ros/humble /usr/bin/cmake --build /home/changwoo/ros2_ws/src/build/park_worlds -- -j8 -l8
+[1.253s] Invoked command in '/home/changwoo/ros2_ws/src/build/park_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/changwoo/ros2_ws/install/simple_astar_planner:/home/changwoo/ros2_ws/install/line_following:/home/changwoo/ros2_ws/install/dwa_local_planner:/home/changwoo/ros2_ws/install/bcr_bot_controller:/opt/ros/humble /usr/bin/cmake --build /home/changwoo/ros2_ws/src/build/park_worlds -- -j8 -l8
+[1.254s] Invoking command in '/home/changwoo/ros2_ws/src/build/park_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/changwoo/ros2_ws/install/simple_astar_planner:/home/changwoo/ros2_ws/install/line_following:/home/changwoo/ros2_ws/install/dwa_local_planner:/home/changwoo/ros2_ws/install/bcr_bot_controller:/opt/ros/humble /usr/bin/cmake --install /home/changwoo/ros2_ws/src/build/park_worlds
+[1.259s] -- Install configuration: ""
+[1.259s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds//worlds
+[1.259s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds//worlds/big_park.world
+[1.259s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds//launch
+[1.259s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds//launch/gazebo_park.launch.py
+[1.259s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/ament_index/resource_index/package_run_dependencies/park_worlds
+[1.259s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/ament_index/resource_index/parent_prefix_path/park_worlds
+[1.259s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/environment/ament_prefix_path.sh
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/environment/ament_prefix_path.dsv
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/environment/path.sh
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/environment/path.dsv
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/local_setup.bash
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/local_setup.sh
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/local_setup.zsh
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/local_setup.dsv
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/package.dsv
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/ament_index/resource_index/packages/park_worlds
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/cmake/park_worldsConfig.cmake
+[1.260s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/cmake/park_worldsConfig-version.cmake
+[1.261s] -- Installing: /home/changwoo/ros2_ws/src/install/park_worlds/share/park_worlds/package.xml
+[1.265s] Invoked command in '/home/changwoo/ros2_ws/src/build/park_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/changwoo/ros2_ws/install/simple_astar_planner:/home/changwoo/ros2_ws/install/line_following:/home/changwoo/ros2_ws/install/dwa_local_planner:/home/changwoo/ros2_ws/install/bcr_bot_controller:/opt/ros/humble /usr/bin/cmake --install /home/changwoo/ros2_ws/src/build/park_worlds

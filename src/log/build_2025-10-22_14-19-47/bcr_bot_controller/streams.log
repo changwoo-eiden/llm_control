@@ -1,0 +1,41 @@
+[1.310s] Invoking command in '/home/changwoo/ros2_ws/src/bcr_bot_controller': PYTHONPATH=/home/changwoo/ros2_ws/src/build/bcr_bot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/changwoo/ros2_ws/src/install/bcr_bot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/bcr_bot_controller build --build-base /home/changwoo/ros2_ws/src/build/bcr_bot_controller/build install --record /home/changwoo/ros2_ws/src/build/bcr_bot_controller/install.log --single-version-externally-managed install_data
+[1.459s] /home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[1.460s]   warnings.warn(msg)
+[1.549s] running egg_info
+[1.564s] writing ../build/bcr_bot_controller/bcr_bot_controller.egg-info/PKG-INFO
+[1.565s] writing dependency_links to ../build/bcr_bot_controller/bcr_bot_controller.egg-info/dependency_links.txt
+[1.565s] writing entry points to ../build/bcr_bot_controller/bcr_bot_controller.egg-info/entry_points.txt
+[1.566s] writing requirements to ../build/bcr_bot_controller/bcr_bot_controller.egg-info/requires.txt
+[1.566s] writing top-level names to ../build/bcr_bot_controller/bcr_bot_controller.egg-info/top_level.txt
+[1.595s] reading manifest file '../build/bcr_bot_controller/bcr_bot_controller.egg-info/SOURCES.txt'
+[1.596s] Traceback (most recent call last):
+[1.596s]   File "/home/changwoo/ros2_ws/src/bcr_bot_controller/setup.py", line 5, in <module>
+[1.596s]     setup(
+[1.596s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/__init__.py", line 117, in setup
+[1.596s]     return distutils.core.setup(**attrs)
+[1.596s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 186, in setup
+[1.596s]     return run_commands(dist)
+[1.596s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 202, in run_commands
+[1.596s]     dist.run_commands()
+[1.596s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1002, in run_commands
+[1.596s]     self.run_command(cmd)
+[1.596s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/dist.py", line 1104, in run_command
+[1.596s]     super().run_command(command)
+[1.596s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1021, in run_command
+[1.597s]     cmd_obj.run()
+[1.597s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 312, in run
+[1.597s]     self.find_sources()
+[1.597s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 320, in find_sources
+[1.597s]     mm.run()
+[1.597s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 548, in run
+[1.597s]     self.prune_file_list()
+[1.597s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/command/sdist.py", line 162, in prune_file_list
+[1.597s]     super().prune_file_list()
+[1.597s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_distutils/command/sdist.py", line 386, in prune_file_list
+[1.597s]     base_dir = self.distribution.get_fullname()
+[1.597s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_core_metadata.py", line 275, in get_fullname
+[1.597s]     return _distribution_fullname(self.get_name(), self.get_version())
+[1.597s]   File "/home/changwoo/.local/lib/python3.10/site-packages/setuptools/_core_metadata.py", line 293, in _distribution_fullname
+[1.597s]     canonicalize_version(version, strip_trailing_zero=False),
+[1.597s] TypeError: canonicalize_version() got an unexpected keyword argument 'strip_trailing_zero'
+[1.621s] Invoked command in '/home/changwoo/ros2_ws/src/bcr_bot_controller' returned '1': PYTHONPATH=/home/changwoo/ros2_ws/src/build/bcr_bot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/changwoo/ros2_ws/src/install/bcr_bot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/bcr_bot_controller build --build-base /home/changwoo/ros2_ws/src/build/bcr_bot_controller/build install --record /home/changwoo/ros2_ws/src/build/bcr_bot_controller/install.log --single-version-externally-managed install_data

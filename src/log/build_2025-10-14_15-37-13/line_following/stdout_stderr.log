@@ -1,0 +1,24 @@
+running egg_info
+writing ../build/line_following/line_following.egg-info/PKG-INFO
+writing dependency_links to ../build/line_following/line_following.egg-info/dependency_links.txt
+writing entry points to ../build/line_following/line_following.egg-info/entry_points.txt
+writing requirements to ../build/line_following/line_following.egg-info/requires.txt
+writing top-level names to ../build/line_following/line_following.egg-info/top_level.txt
+reading manifest file '../build/line_following/line_following.egg-info/SOURCES.txt'
+writing manifest file '../build/line_following/line_following.egg-info/SOURCES.txt'
+running build
+running build_py
+copying line_following/follow_line.py -> /home/changwoo/ros2_ws/src/build/line_following/build/lib/line_following
+copying line_following/__init__.py -> /home/changwoo/ros2_ws/src/build/line_following/build/lib/line_following
+running install
+running install_lib
+running install_data
+copying resource/line_following -> /home/changwoo/ros2_ws/src/install/line_following/share/ament_index/resource_index/packages
+copying package.xml -> /home/changwoo/ros2_ws/src/install/line_following/share/line_following
+copying launch/follow_line.launch.py -> /home/changwoo/ros2_ws/src/install/line_following/share/line_following/launch
+running install_egg_info
+removing '/home/changwoo/ros2_ws/src/install/line_following/lib/python3.10/site-packages/line_following-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../build/line_following/line_following.egg-info to /home/changwoo/ros2_ws/src/install/line_following/lib/python3.10/site-packages/line_following-0.0.0-py3.10.egg-info
+running install_scripts
+Installing follow_line script to /home/changwoo/ros2_ws/src/install/line_following/lib/line_following
+writing list of installed files to '/home/changwoo/ros2_ws/src/build/line_following/install.log'
