@@ -1,0 +1,2 @@
+[console_scripts]
+yolo_v5_ros2_node = my_perception.yolo_v5_ros2_node:main

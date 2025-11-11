@@ -1,0 +1,8 @@
+[console_scripts]
+auto_start_publisher = simple_astar_planner.auto_start_publisher:main
+gpt_api_controller = simple_astar_planner.gpt_api_controller:main
+navigator = simple_astar_planner.navigator:main
+obstacle_publisher = simple_astar_planner.obstacle_publisher:main
+planner = simple_astar_planner.planner:main
+sequences = simple_astar_planner.sequences:main
+takephoto = simple_astar_planner.takephoto:main
