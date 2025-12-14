@@ -1,0 +1,21 @@
+ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=$HOME/ros2_ws/src/bcr_bot/config/bcr_map.yaml
+
+ros2 lifecycle set /map_server configure
+ros2 lifecycle set /map_server activate
+ros2 lifecycle get /map_server
+
+ros2 launch bcr_bot gazebo.launch.py
+
+ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 map odom
+
+ros2 launch simple_astar_planner astar_with_map.launch.py log_level:=debug
+
+ros2 run bcr_bot_controller path_follower
+
+ros2 run simple_astar_planner obstacle_publisher
+
+ros2 run simple_astar_planner gpt_api_controller
+
+ps aux | grep yolo_v5_ros2_node
+
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/bcr_bot/cmd_vel

@@ -1,22 +1,35 @@
 {
   "regions": [
-    
     {
-      "id": 111,
-      "name": "소파",
+      "id": 104,
+      "name": "침대",
       "type": "obstacle",
       "position": [
-        3.082,
-        -7.67
+        3.074,
+        -5.694
       ],
       "size": [
-        13.85,
-        13.7
+        1.15,
+        1.15
       ],
-      "orientation": 0.0
+      "orientation": 4.71
     },
     {
-      "id": 112,
+      "id": 105,
+      "name": "문",
+      "type": "obstacle",
+      "position": [
+        -0.553,
+        0.432
+      ],
+      "size": [
+        0.0005,
+        0.0005
+      ],
+      "orientation": 4.71
+    },
+    {
+      "id": 106,
       "name": "책상",
       "type": "obstacle",
       "position": [

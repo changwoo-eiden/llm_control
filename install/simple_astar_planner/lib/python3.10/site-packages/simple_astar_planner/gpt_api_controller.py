@@ -92,7 +92,7 @@ class GPTAPIController(Node):
             yolo_pkg="my_perception",
             yolo_exec="yolo_v5_ros2_node",
             model_path="/home/changwoo/yolov5/yolov5s.pt",
-            device="cuda",             # "cpu" | "cuda"
+            device="cuda",
             conf_thres=0.35,
             iou_thres=0.45,
             backend="auto",

@@ -5,6 +5,7 @@ from rclpy.node import Node
 
 from geometry_msgs.msg import Twist, PoseStamped
 from nav_msgs.msg import Path, Odometry
+from std_msgs.msg import Bool  # ✅ 완료 신호용
 
 # TF
 from tf2_ros import Buffer, TransformListener
@@ -43,6 +44,9 @@ class PathFollower(Node):
         self.odom_sub = self.create_subscription(Odometry, '/bcr_bot/odom', self.odom_callback, 10)
         self.cmd_pub  = self.create_publisher(Twist, '/bcr_bot/cmd_vel', 10)
 
+        # ✅ ALIGN 완료 신호 퍼블리셔
+        self.done_pub = self.create_publisher(Bool, '/path_follower/done', 10)
+
         # ── State ──
         self.current_pose = None                  # geometry_msgs/Pose
         self.path = []                            # list[PoseStamped]
@@ -51,6 +55,9 @@ class PathFollower(Node):
         self.state = 'FOLLOW'                     # 'FOLLOW' | 'ALIGN'
         self.cached_desired_yaw = None            # ALIGN 단계에서 사용할 최종 yaw 캐시
 
+        # ✅ 현재 path에 대해 완료 신호를 이미 보냈는지 관리
+        self.path_active = False
+
         # ── TF ──
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
@@ -58,7 +65,7 @@ class PathFollower(Node):
         # ── Control timer ──
         self.timer = self.create_timer(0.1, self.control_loop)  # 10Hz
 
-        self.get_logger().info("PathFollower ready. (FOLLOW→ALIGN with final yaw)")
+        self.get_logger().info("PathFollower ready. (FOLLOW→ALIGN with final yaw & done signal)")
 
     # ─────────────────────────────────────────────────────────────────────
     # Subscriptions
@@ -69,6 +76,13 @@ class PathFollower(Node):
         self.goal_index = 0
         self.state = 'FOLLOW'
         self.cached_desired_yaw = None
+
+        # 새 path가 들어왔으니 다시 활성화
+        self.path_active = True
+
+        # 선택: 새 path 시작 시 done=False 한 번 쏴 줄 수도 있음
+        self.done_pub.publish(Bool(data=False))
+
         self.get_logger().info(f"✅ Path received: {len(self.path)} poses, frame={self.path_frame}")
 
     def odom_callback(self, msg: Odometry):
@@ -87,7 +101,7 @@ class PathFollower(Node):
                 self.odom_frame, src, rclpy.time.Time())
             return do_transform_pose(pose_stamped, tf)
         except Exception as e:
-            self.get_logger().warn(f"[TF] {src}→{self.odom_frame} transform failed: {e}")
+            #self.get_logger().warn(f"[TF] {src}→{self.odom_frame} transform failed: {e}")
             return pose_stamped
 
     @staticmethod
@@ -225,6 +239,12 @@ class PathFollower(Node):
                 # 위치+각도 완료 → 정지
                 self.cmd_pub.publish(Twist())
                 self.get_logger().info("🎯 Path completed (pos & yaw)")
+
+                # ✅ 여기서 한 번만 완료 신호 publish
+                if self.path_active:
+                    self.done_pub.publish(Bool(data=True))
+                    self.path_active = False
+
                 # 다음 경로 대비 초기화
                 self.state = 'FOLLOW'
                 self.cached_desired_yaw = None

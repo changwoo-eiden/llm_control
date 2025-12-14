@@ -38,14 +38,28 @@ def compute_anchors(bboxes, standoff: float = 2.0):
         fx = cx + standoff * math.cos(orientation)
         fy = cy + standoff * math.sin(orientation)
         fyaw = (orientation + math.pi) % (2 * math.pi)
+        anchors[f"{name}.front"] = {"x": round(fx,3), "y": round(fy,3), "yaw": round(fyaw,6)}
 
         # back
         bx = cx - standoff * math.cos(orientation)
         by = cy - standoff * math.sin(orientation)
         byaw = orientation % (2 * math.pi)
+        anchors[f"{name}.back"]  = {"x": round(bx,3), "y": round(by,3), "yaw": round(byaw,6)}
 
-        anchors[f"{name}.front"] = {"x": round(fx, 3), "y": round(fy, 3), "yaw": round(fyaw, 6)}
-        anchors[f"{name}.back"]  = {"x": round(bx, 3), "y": round(by, 3), "yaw": round(byaw, 6)}
+        # right
+        right_orientation = orientation - math.pi/2
+        rx = cx + standoff * math.cos(right_orientation)
+        ry = cy + standoff * math.sin(right_orientation)
+        ryaw = (right_orientation + math.pi) % (2 * math.pi)
+        anchors[f"{name}.right"] = {"x": round(rx,3), "y": round(ry,3), "yaw": round(ryaw,6)}
+
+        # left
+        left_orientation = orientation + math.pi/2
+        lx = cx + standoff * math.cos(left_orientation)
+        ly = cy + standoff * math.sin(left_orientation)
+        lyaw = (left_orientation + math.pi) % (2 * math.pi)
+        anchors[f"{name}.left"] = {"x": round(lx,3), "y": round(ly,3), "yaw": round(lyaw,6)}
+
     return anchors
 
 class ObstaclePublisher(Node):
@@ -73,15 +87,30 @@ class ObstaclePublisher(Node):
 
         for item in bboxes:
             name = item["name"]
+
             f = anchors.get(f"{name}.front")
             b = anchors.get(f"{name}.back")
+            l = anchors.get(f"{name}.left")
+            r = anchors.get(f"{name}.right")
+
             if f:
                 self.get_logger().info(
                     f"📍 {name}.front → x={f['x']:.3f}, y={f['y']:.3f}, yaw={f['yaw']:.6f} rad"
                 )
+
             if b:
                 self.get_logger().info(
                     f"📍 {name}.back  → x={b['x']:.3f}, y={b['y']:.3f}, yaw={b['yaw']:.6f} rad"
+                )
+
+            if l:
+                self.get_logger().info(
+                    f"📍 {name}.left  → x={l['x']:.3f}, y={l['y']:.3f}, yaw={l['yaw']:.6f} rad"
+                )
+
+            if r:
+                self.get_logger().info(
+                    f"📍 {name}.right → x={r['x']:.3f}, y={r['y']:.3f}, yaw={r['yaw']:.6f} rad"
                 )
 
         return {"bboxes": bboxes, "anchors": anchors}
@@ -93,12 +122,13 @@ class ObstaclePublisher(Node):
         self.get_logger().info(f"📤 Published /map_anchors ({idx})")
 
     def _tick(self):
-        if self.count >= 3:   
+        if self.count >= 3:
             self.timer.cancel()
             self.get_logger().info("✅ Finished publishing /map_anchors")
             return
         self.count += 1
         self._publish_once(self.count)
+
 
 def main():
     rclpy.init()
@@ -106,6 +136,7 @@ def main():
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
+
 
 if __name__ == "__main__":
     main()

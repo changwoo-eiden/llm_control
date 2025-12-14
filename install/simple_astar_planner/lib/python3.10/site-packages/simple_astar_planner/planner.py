@@ -143,11 +143,13 @@ class AStarPlanner(Node):
         self.get_logger().info(f"indices start=({sx},{sy}) goal=({gx},{gy})")
 
         if not self.in_bounds(sx, sy) or not self.in_bounds(gx, gy):
-            self.get_logger().warn("Start or Goal out of map bounds.")
-            return
+           self.get_logger().warn("Start or Goal out of map bounds.")
+           return
+    
         if self.grid[sy][sx] == 1 or self.grid[gy][gx] == 1:
             self.get_logger().warn("Start or Goal is in obstacle.")
             return
+
 
         use8 = self.get_parameter('use_8_connected').value
         path_cells = self.astar((sx, sy), (gx, gy), use8)

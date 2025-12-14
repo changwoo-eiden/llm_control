@@ -18,7 +18,7 @@ try:
     from rcl_interfaces.srv import SetParameters
     from rcl_interfaces.msg import Parameter, ParameterValue, ParameterType
 except ImportError:
-    # setup.py 빌드 중에는 ROS 모듈이 없으므로 무시
+    
     pass
 
 
@@ -120,8 +120,10 @@ class DetectionAction:
 
         self._stop_sub()
 
-        if spawned_here and not self._keep_yolo_running:
+        # ---- YOLO 프로세스 정리 ----
+        if not self._keep_yolo_running:
             self._terminate_spawned()
+
 
         # ---- 여기서 info를 함께 만들어서 반환 ----
         info = {
