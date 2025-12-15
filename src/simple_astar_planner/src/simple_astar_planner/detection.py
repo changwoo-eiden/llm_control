@@ -2,24 +2,23 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import annotations
-import os
+
+import json
 import shlex
 import signal
 import subprocess
 import time
 from typing import Optional, List
-import json
-try:
-    import rclpy
-    from rclpy.node import Node
-    from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
-    from vision_msgs.msg import Detection2DArray
-    from std_msgs.msg import Bool, String
-    from rcl_interfaces.srv import SetParameters
-    from rcl_interfaces.msg import Parameter, ParameterValue, ParameterType
-except ImportError:
-    
-    pass
+
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
+
+from vision_msgs.msg import Detection2DArray
+from std_msgs.msg import Bool, String
+
+from rcl_interfaces.srv import SetParameters
+from rcl_interfaces.msg import Parameter, ParameterValue, ParameterType
 
 
 def _norm(s: str) -> str:
@@ -37,7 +36,7 @@ class DetectionAction:
         self,
         node: Node,
         *,
-        detections_topic= "/detections_vision",
+        detections_topic="/detections_vision",
         image_topic: str = "/bcr_bot/kinect_camera/image_raw",
         yolo_node_name: str = "yolo_v5_ros2_node",
         yolo_pkg: str = "my_perception",
@@ -67,22 +66,26 @@ class DetectionAction:
         self._keep_yolo_running = keep_yolo_running
         self._max_wait_yolo_ready = max_wait_yolo_ready
 
+        # 발행자 QoS와 맞추기(대부분 RELIABLE + KEEP_LAST)
         self._qos = QoSProfile(
-        reliability=ReliabilityPolicy.RELIABLE,   # ← 발행자와 맞춤
-        history=HistoryPolicy.KEEP_LAST,
-        depth=10,
-    # durability는 기본 VOLATILE이므로 생략해도 발행자와 일치
-)
-
+            reliability=ReliabilityPolicy.RELIABLE,
+            history=HistoryPolicy.KEEP_LAST,
+            depth=10,
+            # durability는 기본 VOLATILE이므로 생략해도 발행자와 일치
+        )
 
         self._sub = None
         self._last_msg: Optional[Detection2DArray] = None
+
         self._param_service = f"/{self._yolo_node_name}/set_parameters"
         self._param_client = self._node.create_client(SetParameters, self._param_service)
 
         self._spawn_proc: Optional[subprocess.Popen] = None  # 자동 스폰한 프로세스 핸들
         self._pub_found = self._node.create_publisher(Bool, "/detection/found", 10)
         self._pub_info  = self._node.create_publisher(String, "/detection/info", 10)
+
+        # 외부에서 읽는 경우가 있어 기본값 제공
+        self.last_detected: bool = False
 
     # ─────────────────────────────────────────────────────────────
     # Public API
@@ -120,26 +123,28 @@ class DetectionAction:
 
         self._stop_sub()
 
+        # 마지막 탐지 결과 저장
+        self.last_detected = bool(found)
+
         # ---- YOLO 프로세스 정리 ----
         if not self._keep_yolo_running:
             self._terminate_spawned()
 
-
-        # ---- 여기서 info를 함께 만들어서 반환 ----
+        # ---- info 반환 ----
         info = {
             "class": target_class,
             "timeout_sec": float(timeout_sec),
             "found": bool(found),
             "timestamp": time.time(),
-            # 필요하면 최근 메시지에서 bbox/score 추출해 넣기 (샘플)
+            # 필요하면 최근 메시지에서 bbox/score 추출해 넣기
             # "detections": self._extract_detections(self._last_msg, target_norm),
         }
-
 
         self._pub_found.publish(Bool(data=found))
         self._pub_info.publish(String(data=json.dumps(info, ensure_ascii=False)))
 
         return found, info
+
     # ─────────────────────────────────────────────────────────────
     # Internals — publishers, subscription, parsing
 
@@ -204,12 +209,12 @@ class DetectionAction:
         if prefer_param == "class_filter":
             cmd += ["-p", f"class_filter:=['{target_class}']"]
         else:
-            # 기본: filter(string) 사용 (네 실행 습관과 동일)
+            # 기본: filter(string) 사용
             cmd += ["-p", f"filter:={target_class}"]
 
         self._log_info(f"Spawning YOLO node: {' '.join(shlex.quote(c) for c in cmd)}")
         try:
-            # stdout/stderr를 inherit하면 화면에 바로 로그가 나와 디버깅에 유리
+            # stdout/stderr inherit하면 화면에 바로 로그가 나와 디버깅에 유리
             self._spawn_proc = subprocess.Popen(cmd)
             return True
         except Exception as e:
@@ -222,6 +227,7 @@ class DetectionAction:
         퍼블리셔 또는 파라미터 서비스가 준비될 때까지 대기.
         """
         deadline = time.time() + self._max_wait_yolo_ready
+
         # 1) 파라미터 서비스 준비?
         while rclpy.ok() and time.time() < deadline:
             if self._param_client.wait_for_service(timeout_sec=0.1):
@@ -295,7 +301,10 @@ class DetectionAction:
         if pname == "filter":
             pval = ParameterValue(type=ParameterType.PARAMETER_STRING, string_value=value)
         elif pname == "class_filter":
-            pval = ParameterValue(type=ParameterType.PARAMETER_STRING_ARRAY, string_array_value=[value])
+            pval = ParameterValue(
+                type=ParameterType.PARAMETER_STRING_ARRAY,
+                string_array_value=[value],
+            )
         else:
             return False
 
@@ -307,8 +316,10 @@ class DetectionAction:
             t0 = time.time()
             while not fut.done() and (time.time() - t0) < 1.0 and rclpy.ok():
                 rclpy.spin_once(self._node, timeout_sec=0.05)
+
             if not fut.done():
                 return False
+
             res = fut.result()
             return bool(res and all(r.successful for r in res.results))
         except Exception:
@@ -328,4 +339,3 @@ class DetectionAction:
             self._node.get_logger().warn(msg)
         except Exception:
             print("[WARN]", msg)
-
